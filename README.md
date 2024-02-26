@@ -1,14 +1,12 @@
 
 # linux-programs.sh
 
-Script simples para instalação de pacotes que utilizo normalmente nos meus sistemas. 
-
-Como eu ando numa de "Distro Hopper" ficar instalando os pacotes da um trabalho danado e é bem cansativo, aí pra facilitar eu acebei criando esse script uns dias atrás numa madrugada.
-
+Simple script for installing packages that I usually use on my systems.
+Since I've been into "Distro Hopping" lately, installing packages over and over again is quite a hassle and very tiresome. So, to make things easier, I ended up creating this script a few days ago during one late night.
 
 
 
-## Pacotes
+## Packages
 
  - [Flatpak]()
  - [Gnome Tweaks]()
@@ -28,9 +26,9 @@ Como eu ando numa de "Distro Hopper" ficar instalando os pacotes da um trabalho 
  
 
 
-## Executando
+## Running
 
-Só rodar:
+Just execute:
 
 ```bash
   sudo bash script.sh [--manjaro|--ubuntu|--fedora]
@@ -40,9 +38,9 @@ Só rodar:
 
 
 
-## Mais pacotes?
+## More Packages?
 
-Na sequencia eu até posso ir adicionando outros que eu uso. Mas qualquer coisa, fazer um clone ou um fork aí e altera o array `applications`, é bem auto explicativo
-
+I might add more in the future. But if you want, you can clone or fork it and modify the `applications` array; it's pretty self-explanatory.
 ```
-[NOME_DO_PACOTE]="ID_DO_PACOTE_NO_FLATHUB"
+[PACKAGE_NAME]="FLATHUB_PACKAGE_ID"
+```
