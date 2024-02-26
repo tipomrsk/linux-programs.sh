@@ -9,6 +9,7 @@ display_usage() {
     echo "      sudo bash $0 --manjaro"
     echo "      sudo bash $0 --ubuntu"
     echo "      sudo bash $0 --fedora"
+    echo "Eu sei que na real seria --arch, mas como eu não vou instalar o arch, coloquei manjaro mesmo. :)"
 }
 
 # Verifica se o número de argumentos é válido
