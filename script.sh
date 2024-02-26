@@ -2,11 +2,59 @@
 
 # Bash para instalar os programas que uso no sistema, a maioria é flatpak
 
-echo "-------------------------"
-echo "-- Instalando FlatPak --"
-echo "-------------------------"
+# Função para exibir a mensagem de uso
+display_usage() {
+    echo "Você precisa fornecer a flag de alguma Distro Linux"
+    echo "Exemplo:"
+    echo "      sudo bash $0 --manjaro"
+    echo "      sudo bash $0 --ubuntu"
+    echo "      sudo bash $0 --fedora"
+}
 
-apt install flatpak
+# Verifica se o número de argumentos é válido
+if [ $# -ne 1 ]; then
+    display_usage
+    exit 1
+fi
+
+# Mapeando os geradores de pacote das distros
+declare -A package_manager=(
+    ["manjaro"]="pacman -S"
+    ["ubuntu"]="apt install -y"
+    ["fedora"]="dnf install -y"
+)
+
+# Verifica se a distro ta dentro do script
+case $1 in
+    "--manjaro" | "--ubuntu" | "--fedora")
+        DISTRO="${1:2}"  # Remove os primeiros dois caracteres (--)
+        ;;
+    *)
+        # Se nenhum parâmetro válido foi fornecido, exibe mensagem de uso
+        display_usage
+        exit 1
+        ;;
+esac
+
+# Pacotes a serem instalados
+packages=(
+    "flatpak"
+    "gnome-tweaks"
+    "docker"
+    "docker-compose"
+    "zsh"
+)
+
+# Instala os pacotes para a distribuição selecionada
+for package in "${packages[@]}"; do
+    echo "-------------------------"
+    echo "-- Instalando $package --"
+    echo "-------------------------"
+
+    # Executa o comando de instalação correspondente à distribuição
+    ${package_manager[$DISTRO]} "$package" -y
+done
+
 
 echo "-------------------------"
 echo "-- Instalando Spotify --"
@@ -38,6 +86,12 @@ echo "-------------------------"
 
 flatpak install flathub com.visualstudio.code -y
 
+echo "--------------------------"
+echo "-- Instalando BeeKeeper --"
+echo "--------------------------"
+
+flatpak install flathub io.beekeeperstudio.Studio -y
+
 echo "-------------------------"
 echo "-- Instalando Postman ---"
 echo "-------------------------"
@@ -56,24 +110,6 @@ echo "--------------------------"
 
 flatpak install flathub org.flameshot.Flameshot -y
 
-echo "--------------------------"
-echo "---- Instalando Docker ---"
-echo "--------------------------"
-
-apt install docker.io
-
-echo "--------------------------"
-echo "Instalando Docker Compose "
-echo "--------------------------"
-
-apt install docker-compose
-
-echo "-----------------------------"
-echo "Instalando e Configurando ZSH"
-echo "-----------------------------"
-
-echo "Instalando ZSH"
-apt install zsh
 
 echo "Instalando Oh My ZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
