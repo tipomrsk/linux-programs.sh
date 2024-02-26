@@ -82,18 +82,27 @@ for app_name in "${!applications[@]}"; do
 done
 
 
+# Configurações para o ZSH
 echo "--------------------"
 echo "Instalando Oh My ZSH"
 echo "--------------------"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+echo "----------------------------"
 echo "Baixando e instalando fontes"
+echo "----------------------------"
 
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -o /usr/share/fonts/MesloLGS\ NF\ Regular.ttf
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -o /usr/share/fonts/MesloLGS\ NF\ Bold.ttf
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -o /usr/share/fonts/MesloLGS\ NF\ Italic.ttf
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -o /usr/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
 
-echo "Executando o p10k para ser configurado"
+
+echo "----------------------"
+echo "---- Executa p10k ----"
+echo "----------------------"
 p10k configure
+
+# @TODO adicionar zsh-syntax-highlighting para o zsh
+# @TODO adicionar zsh-autosuggestions para o zsh
