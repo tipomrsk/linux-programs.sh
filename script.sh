@@ -56,62 +56,36 @@ for package in "${packages[@]}"; do
 done
 
 
-echo "-------------------------"
-echo "-- Instalando Spotify --"
-echo "-------------------------"
+# Adiciona apps do flathub
+# Array de aplicativos com detalhes de nome e identificador
+declare -A applications=(
+    ["Spotify"]="com.spotify.Client"
+    ["Discord"]="com.discordapp.Discord"
+    ["Telegram"]="org.telegram.desktop"
+    ["VLC"]="org.videolan.VLC"
+    ["VSCode"]="com.visualstudio.code"
+    ["BeeKeeper"]="io.beekeeperstudio.Studio"
+    ["Postman"]="com.getpostman.Postman"
+    ["Google Chrome"]="com.google.Chrome"
+    ["FlameShot"]="org.flameshot.Flameshot"
+)
 
-flatpak install flathub com.spotify.Client -y
-
-echo "-------------------------"
-echo "-- Instalando Discord --"
-echo "-------------------------"
-
-flatpak install flathub com.discordapp.Discord -y
-
-echo "-------------------------"
-echo "-- Instalando Telegram --"
-echo "-------------------------"
-
-flatpak install flathub org.telegram.desktop -y
-
-echo "-------------------------"
-echo "---- Instalando VLC -----"
-echo "-------------------------"
-
-flatpak install flathub org.videolan.VLC -y
-
-echo "-------------------------"
-echo "--- Instalando VSCODE ---"
-echo "-------------------------"
-
-flatpak install flathub com.visualstudio.code -y
-
-echo "--------------------------"
-echo "-- Instalando BeeKeeper --"
-echo "--------------------------"
-
-flatpak install flathub io.beekeeperstudio.Studio -y
-
-echo "-------------------------"
-echo "-- Instalando Postman ---"
-echo "-------------------------"
-
-flatpak install flathub com.getpostman.Postman -y
-
-echo "-------------------------"
-echo "Instalando Google Chrome"
-echo "-------------------------"
-
-flatpak install flathub com.google.Chrome -y
-
-echo "--------------------------"
-echo "-- Instalando FlameShot --"
-echo "--------------------------"
-
-flatpak install flathub org.flameshot.Flameshot -y
+# Itera sobre cada aplicativo e instala utilizando Flatpak
+for app_name in "${!applications[@]}"; do
+    app_id="${applications[$app_name]}"
+    
+    echo "-------------------------"
+    echo "-- Instalando $app_name --"
+    echo "-------------------------"
+    
+    flatpak install flathub "$app_id" -y
+done
 
 
+echo "--------------------"
 echo "Instalando Oh My ZSH"
+echo "--------------------"
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Baixando e instalando fontes"
