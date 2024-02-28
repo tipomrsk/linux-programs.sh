@@ -100,10 +100,27 @@ curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20I
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -o /usr/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
 
 
+
+
+echo "----------------------"
+echo "- ZSH Autossugestion -"
+echo "----------------------"
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+echo "----------------------"
+echo "--- ZSH Highlights ---"
+echo "----------------------"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
 echo "----------------------"
 echo "---- Executa p10k ----"
 echo "----------------------"
 p10k configure
 
-# @TODO adicionar zsh-syntax-highlighting para o zsh
-# @TODO adicionar zsh-autosuggestions para o zsh
+echo "---------------------"
+echo "--- Configura ZSH ---"
+echo "---------------------"
+
+cp .zshrc ~/.zshrc
