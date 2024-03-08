@@ -69,6 +69,7 @@ declare -A applications=(
     ["Postman"]="com.getpostman.Postman"
     ["Google Chrome"]="com.google.Chrome"
     ["FlameShot"]="org.flameshot.Flameshot"
+    ["PHPStorm"]="com.jetbrains.PhpStorm"
 )
 
 # Itera sobre cada aplicativo e instala utilizando Flatpak
